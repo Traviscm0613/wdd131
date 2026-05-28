@@ -70,8 +70,8 @@ console.log(gpaAverage);
 
 const words = ['watermelon', 'peach', 'apple', 'tomato', 'grape'];
           
-const shortWords = words.filter(function(word){
-    return word.length < 6
+const shortWords = words.filter(function(words){
+    return words.length < 6
 })
 
 console.log(shortWords);
