@@ -1,0 +1,14 @@
+body h1 {
+    text-align: center;
+    margin: 100px;
+}
+body h2 {
+    text-align: center;
+}
+
+body a {
+    text-decoration: none;
+    text-align: center;
+    display:grid;
+    grid-template-columns: 1fr;
+}
