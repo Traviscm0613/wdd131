@@ -50,25 +50,12 @@ form.addEventListener("submit", function (event) {
   const selectedCampuses = getSelectedCampuses();
   const note = form.notes.value.trim();
 
-  // Validate the input
-  // Let the user know to select at least one campus
-  if (selectedCampuses.length === 0) {
-    output.textContent = "Please Choose at least one campus";
-    return
-  }
-  
   // Let the user know if they choose many campuses but didn't put a note that they need to add a note
   if (type == 'many' && !notes) {
     output.textContent = 'Please add a travel note. Tell us how you will travel between campuses.';
     return
   }
   
-  //Let the user know if they choose many campus but only had one campus selected that they need to choose at least two campuses
-  if (type == 'many' && selectedCampuses.length < 2) {
-    output.textContent = 'Please select at least 2 campuses';
-    return
-  }
-
   if (isPastDate(availableDate)) {
     output.textContent = "Please choose a later date.";
     return;
@@ -79,7 +66,6 @@ form.addEventListener("submit", function (event) {
   <p>${firstName} ${lastName}</p>
   <p>Email: ${email}</p>
   <p>Availability: ${availableDate}</p>
-  <p>Campuses: ${selectedCampuses.join(", ")}</p>
   <p>Preference Level: ${type}</p>
   `;
 
