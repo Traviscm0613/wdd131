@@ -1,16 +1,16 @@
 
-const form = document.querySelector("#fsyForm");
+const form = document.querySelector("#eventForm");
 const travelRange = document.querySelector("#travelRange");
 const notesContainer = document.querySelector("#notesContainer");
 const notes = document.querySelector("#notes");
 const output = document.querySelector("#output");
-const campusBoxes = document.querySelectorAll('input[name="campus"]');
+
 
 function updateNotesField() {
   const value = travelRange.value;
 
   // Show the travel notes on the form if they are choosing many campuses and require it
-  if (value === 'many') {
+  if (value === 'student') {
     notesContainer.hidden = false;
     notes.required = true;
   }
@@ -31,12 +31,7 @@ function isPastDate(value) {
   return chosen < today;
 }
 
-function getSelectedCampuses() {
-  //.from converts a NodeList into a real array, so then you can use .filter and .map
-  return Array.from(campusBoxes)
-    .filter(box => box.checked)
-    .map(box => box.value); 
-}
+
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -47,12 +42,11 @@ form.addEventListener("submit", function (event) {
   const email = form.email.value.trim();
   const type = form.travelRange.value;
   const availableDate = form.availableDate.value;
-  const selectedCampuses = getSelectedCampuses();
   const note = form.notes.value.trim();
 
   // Let the user know if they choose many campuses but didn't put a note that they need to add a note
-  if (type == 'many' && !notes) {
-    output.textContent = 'Please add a travel note. Tell us how you will travel between campuses.';
+  if (type == 'student' && note.length !== 9) {
+    output.textContent = 'Student I# must be 9 digits';
     return
   }
   
@@ -61,12 +55,13 @@ form.addEventListener("submit", function (event) {
     return;
   }
 
+
   output.innerHTML = `
-  <h2>Preference Submitted</h2>
+  <h2>Ticket Created</h2>
   <p>${firstName} ${lastName}</p>
   <p>Email: ${email}</p>
+  <p>${type}</p>
   <p>Availability: ${availableDate}</p>
-  <p>Preference Level: ${type}</p>
   `;
 
   form.reset();
