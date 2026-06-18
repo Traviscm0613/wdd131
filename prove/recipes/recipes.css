@@ -59,7 +59,9 @@ button {
     
 }
 .recipe img{
-    width:550px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
     flex: 1 1;
     
 }
@@ -86,6 +88,10 @@ footer img{
     }
     .recipe {
         flex-direction: row;
+    }
+    .recipe img {
+        width: 550px;
+        height: auto;
     }
     .recipe-content {
         padding: 0 25px;
