@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
+
+#page-title img {
+    width: 200px;
+}
+#page-title {
+    display: flex;
+    justify-content: center; 
+    gap: 30px;
+    font-family: "Amatic SC" ;
+}
+h1{
+    color:black;
+    font-size:80px;
+    
+}
+#search {
+    display: flex;
+    border: 2px solid black;
+    padding: 5px;
+    border-radius: 10px;
+    margin: 20px;
+    margin-bottom: 50px;
+}
+#search input {
+    width: 100%;
+    font-size: 25px;
+    border: none;
+}
+#search img {
+    width: 50px;
+    border-left: 1px solid black;
+    padding-left: 10px;
+}
+#search img{
+    width:50px;
+}
+
+header img {
+    width: 100px;
+}
+
+h2 {
+    font-size: 40px;;
+    font-family: "Amatic SC" ;
+    color: rgb(46, 156, 224);
+}
+button {
+    font-size: 30px;
+}
+
+.recipe {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding:50px;
+    
+    
+}
+.recipe img{
+    width:550px;
+    flex: 1 1;
+    
+}
+footer {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    flex-direction: column;
+    padding-top: 20px;
+    gap: 20px;
+    
+}
+footer img{
+    width: 100px;
+}
+
+
+
+
+
+@media screen and (min-width: 800px) {
+    p{
+        display: block;
+    }
+    .recipe {
+        flex-direction: row;
+    }
+    .recipe-content {
+        padding: 0 25px;
+    }
+    footer {
+        display:flex;
+        flex-direction: row-reverse;
+        
+    }
+    
+}
+
+@media screen and (max-width: 800px) {
+    .recipe p {
+        display:none;
+    }
+}
