@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipes</title>
     <link href="recipes.css" rel="stylesheet">
+    <script src="recipes.js" defer></script>
 
     
     <!-- Open Graph (Facebook, LinkedIn, etc.) -->
@@ -36,37 +37,22 @@
     </header>
     <div id="search">
         <input placeholder="Find a recipe">
-        <img src="images/search.svg" alt="search icon">
+        <button id="search-button">
+            <img src="images/search.svg" alt="search icon">
+        </button>
     </div>
     
     <main>
-        <div class="recipe">
-                <img src="images/apple-crisp.jpg" alt="apple-crisp photo">
-                    <div class="recipe-content">
-                        <button>dessert</button>
-                        <h2>Apple Crisp</h2>
-                        <span
-                            class="rating"
-                            role="img"
-                            aria-label="Rating: 4 out of 5 stars">
-                            <span aria-hidden="true" class="icon-star">⭐</span>
-                            <span aria-hidden="true" class="icon-star">⭐</span>
-                            <span aria-hidden="true" class="icon-star">⭐</span>
-                            <span aria-hidden="true" class="icon-star">⭐</span>
-                            <span aria-hidden="true" class="icon-star-empty">☆</span>
-                        </span>
-                        <p>This apple crisp recipe is a simple yet delicious fall dessert that's greate served warm with vanilla ice cream.</p>
-                    </div>
-                </div>      
-
-        <footer>
-            <div class="social">
-                <a href="#"><img src="images/instagram_icon.svg" alt="instagram icon"></a>
-                <a href="#"><img src="images/youtube_icon.svg" alt="youtube icon"></a>
-                <a href="#"><img src="images/pinterest_icon.svg" alt="pinterest icon"></a>
-            </div>
-            <a href="https://www.flaticon.com/free-icons/recipe" title="recipe icons">Recipe icons created by Freepik - Flaticon</a>
-        </footer>
+        <div id="recipe-container"></div>    
     </main>
-</body>
+                <footer>
+                    <div class="social">
+                        <a href="#"><img src="images/instagram_icon.svg" alt="instagram icon"></a>
+                        <a href="#"><img src="images/youtube_icon.svg" alt="youtube icon"></a>
+                        <a href="#"><img src="images/pinterest_icon.svg" alt="pinterest icon"></a>
+                    </div>
+                    <a href="https://www.flaticon.com/free-icons/recipe" title="recipe icons">Recipe icons created by Freepik - Flaticon</a>
+                </footer>
+            </body>
 </html>
+

@@ -28,12 +28,11 @@ h1{
     border: none;
 }
 #search img {
-    width: 50px;
     border-left: 1px solid black;
     padding-left: 10px;
 }
 #search img{
-    width:50px;
+    width:45px;
 }
 
 header img {
@@ -44,6 +43,7 @@ h2 {
     font-size: 40px;;
     font-family: "Amatic SC" ;
     color: rgb(46, 156, 224);
+    
 }
 button {
     font-size: 30px;
@@ -57,12 +57,14 @@ button {
     padding:50px;
     
     
+    
 }
 .recipe img{
     width: 100%;
-    height: auto;
+    height: 300px;
     object-fit: cover;
-    flex: 1 1;
+    flex: .7 1;
+    display: block;
     
 }
 footer {
@@ -90,7 +92,7 @@ footer img{
         flex-direction: row;
     }
     .recipe img {
-        width: 550px;
+        width: 500px;
         height: auto;
     }
     .recipe-content {
