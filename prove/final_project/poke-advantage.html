@@ -8,14 +8,36 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Berkshire+Swash&family=Eater&family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&family=Nanum+Brush+Script&family=Nosifer&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Pacifico&family=Rubik+Burned&display=swap" rel="stylesheet">
     <link href="poke-advantage.css" rel="stylesheet">
+    <script src="poke-advantage.js" defer></script>
 
 </head>
 <body>
     <header>
-
+        <img src="images/BCO.6f16b271-605d-4213-8d6e-f62bface765d.png">
+        <h1>
+            Poke-Advantage
+        </h1>
     </header>
     <main>
-
+        <div class="field">
+        <label for="options">Choose a Pokemon or Type</label>
+        <select
+          id="options"
+          name="options"
+          aria-controls="optionsContainer"
+          required
+        >
+          <option value="">Choose one</option>
+          <option value="guest">Pokemon</option>
+          <option value="student">Type</option>
+        </select>
+      </div>
+        <div id="search">
+        <input placeholder="Search a Pokemon">
+        <button id="search-button">
+            <img src="images/search.svg" alt="search icon">
+        </button>
+    </div>
     </main>
     <footer>
         
