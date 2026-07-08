@@ -15,17 +15,27 @@ header img {
 /* main */
 main img {
     width: 50px;
-    
 }
 main{
     text-align: center;
+    
 }
 main input{
     font-size:20px;
+    padding-right:10px;
+}
+button{
+    width:70px;
+}
+
+#search{
+    display:flex;
+    padding:50px;
+    justify-content: center;
     
 }
-#search{
-    display:grid;
-    grid-template-columns: 1fr 1fr;
-    padding:50px;
+
+
+@media screen and (min-width: 800px) {
+  
 }
