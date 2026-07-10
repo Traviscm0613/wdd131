@@ -1,4 +1,4 @@
-/* I made the format then asked AI to do it with all pokemon, this is the only thing done by AI. */
+
 
 const pokemon = [
   { name: 'Bulbasaur', type: ['Grass', 'Poison'], description: "A small Pokémon that grows a plant bulb on its back, storing energy for evolution.", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" },
@@ -226,14 +226,156 @@ const pokemon = [
   { name: 'Mew', type: ['Psychic'], description: "A mythical Pokémon said to contain the DNA of every Pokémon.", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/151.png" }
 ];
 
+const type = [
+  { 
+    type: "Normal", 
+    image: "images/normal.png",
+    strengths: ["None"], 
+    weaknesses: ["Fighting"] 
+  },
+  { 
+    type: "Fire", 
+    image: "images/fire.png",
+    strengths: ["Grass", "Ice", "Bug", "Steel"], 
+    weaknesses: ["Water", "Ground", "Rock"] 
+  },
+  { 
+    type: "Water", 
+    image: "images/water.png",
+    strengths: ["Fire", "Ground", "Rock"], 
+    weaknesses: ["Electric", "Grass"] 
+  },
+  { 
+    type: "Grass", 
+    image: "images/grass.png",
+    strengths: ["Water", "Ground", "Rock"], 
+    weaknesses: ["Fire", "Ice", "Poison", "Flying", "Bug"] 
+  },
+  { 
+    type: "Electric", 
+    image: "images/electric.png",
+    strengths: ["Water"], 
+    weaknesses: ["Flying", "Ground"] 
+  },
+  { 
+    type: "Ice", 
+    image: "images/ice.png",
+    strengths: ["Grass", "Ground", "Flying", "Dragon"], 
+    weaknesses: ["Fire", "Fighting", "Rock", "Steel"] 
+  },
+  { 
+    type: "Fighting", 
+    image: "images/fighting.png",
+    strengths: ["Normal", "Ice", "Rock", "Dark", "Steel"], 
+    weaknesses: ["Flying", "Psychic", "Fairy"] 
+  },
+  { 
+    type: "Poison", 
+    image: "images/poison.png",
+    strengths: ["Grass", "Fairy"], 
+    weaknesses: ["Ground", "Psychic"] 
+  },
+  { 
+    type: "Ground", 
+    image: "images/ground.png",
+    strengths: ["Fire", "Electric", "Poison", "Rock", "Steel"], 
+    weaknesses: ["Water", "Ice", "Grass"] 
+  },
+  { 
+    type: "Flying", 
+    image: "images/flying.png",
+    strengths: ["Grass", "Fighting", "Bug"], 
+    weaknesses: ["Electric", "Ice", "Rock"] 
+  },
+  { 
+    type: "Psychic", 
+    image: "images/psychic.png",
+    strengths: ["Fighting", "Poison"], 
+    weaknesses: ["Bug", "Ghost", "Dark"] 
+  },
+  { 
+    type: "Bug", 
+    image: "images/bug.png",
+    strengths: ["Grass", "Psychic", "Dark"], 
+    weaknesses: ["Fire", "Flying", "Rock"] 
+  },
+  { 
+    type: "Rock", 
+    image: "images/rock.png",
+    strengths: ["Fire", "Ice", "Flying", "Bug"], 
+    weaknesses: ["Water", "Grass", "Fighting", "Ground", "Steel"] 
+  },
+  { 
+    type: "Ghost", 
+    image: "images/ghost.png",
+    strengths: ["Psychic", "Ghost"], 
+    weaknesses: ["Ghost", "Dark"] 
+  },
+  { 
+    type: "Dragon", 
+    image: "images/dragon.png",
+    strengths: ["Dragon"], 
+    weaknesses: ["Ice", "Dragon", "Fairy"] 
+  },
+  { 
+    type: "Dark", 
+    image: "images/dark.png",
+    strengths: ["Psychic", "Ghost"], 
+    weaknesses: ["Fighting", "Bug", "Fairy"] 
+  },
+  { 
+    type: "Steel", 
+    image: "images/steel.png",
+    strengths: ["Ice", "Rock", "Fairy"], 
+    weaknesses: ["Fire", "Fighting", "Ground"] 
+  },
+  { 
+    type: "Fairy", 
+    image: "images/fairy.png",
+    strengths: ["Fighting", "Dragon", "Dark"], 
+    weaknesses: ["Poison", "Steel"] 
+  }
+];
+
+
 
 let pokemonContainer = document.querySelector("#pokemon-container");
+let typeContainer = document.querySelector("#type-container");
+
 let button = document.querySelector("#search-button");
 let input = document.querySelector("#search-input");
+const options = document.querySelector("#options");
 
-button.addEventListener("click", search);
 
-function search() {
+function updatePageField() {
+
+  // This will change the search function where you change if you want to search a type of a pokemon or then name of a pokemon.
+  if (options.value === 'pokemon') {
+    pokemonContainer.hidden = false;
+    typeContainer.hidden = true;
+  }
+  else {
+    pokemonContainer.hidden = true;
+    typeContainer.hidden = false; 
+  }
+}
+
+
+options.addEventListener("change", updatePageField);
+updatePageField();
+
+// This will make it where it searches only one chart instead of both.
+button.addEventListener("click", () => {
+    if (options.value === "pokemon") {
+        searchPokemon();
+    } else {
+        searchType();
+    }
+});
+
+////
+//searching pokemon
+function searchPokemon() {
   let pokemonQuery = input.value;
 
   let filteredPokemon = pokemon.filter(function (pokemon) {
@@ -245,28 +387,54 @@ function search() {
 });
 
   pokemonContainer.innerHTML = '';
+  typeContainer.innerHTML = '';
 
   filteredPokemon.forEach(pokemon => {
     render(pokemon);
   });
 }
+////
+//searching types 
+function searchType() {
+  let typeQuery = input.value;
 
-/* for the enter key to work on search - not just clicking the search button */
-input.addEventListener('keypress', handleEnter);
-function handleEnter(event) {
-  if (event.key === 'Enter') {
-    search();
-  }
+  let filteredType = type.filter(function (types) {
+  return (
+    types.type.toLowerCase().includes(typeQuery.toLowerCase())
+  );
+});
+
+  typeContainer.innerHTML = '';
+  pokemonContainer.innerHTML = '';
+
+  filteredType.forEach(type => {
+    renderType(type);
+  });
 }
 
-let randomNum = Math.floor(Math.random() * pokemon.length);
-console.log(randomNum);
+input.addEventListener("keydown", handleEnter);
 
+/* for the enter key to work on search - not just clicking the search button */
+function handleEnter(event) {
+    if (event.key === "Enter") {
+        if (options.value === "pokemon") {
+            searchPokemon();
+        } else {
+            searchType();
+        }
+    }
+}
+
+let randomNumPokemon = Math.floor(Math.random() * pokemon.length);
+console.log(randomNumPokemon);
+
+
+//template for pokemon
 function pokemonsTemplate(pokemon) {
   return `
     <div class="pokemon-content">
     <h2>${pokemon.name}</h2>
-    <div class="pokemon" id="pokemon-container">
+    <div class="pokemon">
     <img src="${pokemon.image}" alt="${pokemon.name} photo">
     
       <h3>${pokemon.type}</h3>
@@ -277,13 +445,36 @@ function pokemonsTemplate(pokemon) {
   `;
 }
 
+
+//template for types
+//.join adds a space in between each word if there are various words in the table
+function typesTemplate(type) {
+  return `
+    <div class="type-content">
+    <h2>${type.type}</h2>
+    <div class="type">
+    <img src="${type.image}" alt="${type.type} photo">
+
+      <h3>Strengths: ${type.strengths.join(", ")}</h3>
+      <h3>Weaknesses: ${type.weaknesses.join(", ")}</h3>
+      </div>
+    </div>
+  `;
+}
+
+//rendering pokemon and types
 function render(pokemon) {
     let html = pokemonsTemplate(pokemon);
     pokemonContainer.innerHTML += html
 }
+function renderType(type) {
+    let html = typesTemplate(type);
+    typeContainer.innerHTML += html
+}
 
+//puts random pokemon and stats on screen
 function init() {
-    renderpokemon(pokemon[randomNum]);
+    render(pokemon[randomNumPokemon]);
 }
 
 init();
