@@ -247,7 +247,7 @@ function search() {
   pokemonContainer.innerHTML = '';
 
   filteredPokemon.forEach(pokemon => {
-    renderPokemon(pokemon);
+    render(pokemon);
   });
 }
 
@@ -264,11 +264,11 @@ console.log(randomNum);
 
 function pokemonsTemplate(pokemon) {
   return `
+    <div class="pokemon-content">
+    <h2>${pokemon.name}</h2>
     <div class="pokemon" id="pokemon-container">
     <img src="${pokemon.image}" alt="${pokemon.name} photo">
     
-      <div class="pokemon-content">
-      <h2>${pokemon.name}</h2>
       <h3>${pokemon.type}</h3>
 
         <p>${pokemon.description}</p>
@@ -283,7 +283,7 @@ function render(pokemon) {
 }
 
 function init() {
-    renderpokemon(pokemons[randomNum]);
+    renderpokemon(pokemon[randomNum]);
 }
 
 init();
