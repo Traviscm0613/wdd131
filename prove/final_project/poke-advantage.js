@@ -414,7 +414,7 @@ function searchType() {
 
 input.addEventListener("keydown", handleEnter);
 
-/* for the enter key to work on search - not just clicking the search button */
+// for the enter key to work on search - not just clicking the search button
 function handleEnter(event) {
     if (event.key === "Enter") {
         if (options.value === "pokemon") {
@@ -425,73 +425,82 @@ function handleEnter(event) {
     }
 }
 
-let randomNumPokemon = Math.floor(Math.random() * pokemon.length);
-console.log(randomNumPokemon);
 
 
 
-
-
-// work to make show the strengths and weakness of the pokemon
-//
-//
-//
-//
-function pokemonWeakness(pokemon, type) {
-  if (pokemon.type == type.type) {
-    return `
-    <h3>Strength - ${type.strengths}</h3>
-    <h3>Weaknesses - ${type.weaknesses}</h3>
-    `
-  }
+// This will find the objects in the array depending on the type of the pokemon that you search up.
+function pokemonStats(pokemon) {
+  let html = "";
+  
+  //this will do the finding in the arrays
+  pokemon.type.forEach(pokemonType => {
+    const typeInfo = type.find(types => types.type === pokemonType);
+    
+    // this creates the 
+    if (typeInfo) {
+      html += `
+      <h3>${pokemonType}</h3>
+      <p>Strengths - ${typeInfo.strengths.join(", ")}</p>
+      <p>Weaknesses - ${typeInfo.weaknesses.join(", ")}</p>
+      `;
+    }
+  });
+  
+  return html;
 }
 
 
 //template for pokemon
-function pokemonsTemplate(pokemon, type) {
+function pokemonsTemplate(pokemon) {
   return `
-    <div class="pokemon-content">
-    <h2>${pokemon.name}</h2>
-    <div class="pokemon">
-    <img src="${pokemon.image}" alt="${pokemon.name} photo">
-    
-      
-      <h3>${pokemon.type}</h3>
-
-        <p>${pokemon.description}</p>
-      </div>
-    </div>
+  <div class="pokemon-content">
+  <h2>${pokemon.name}</h2>
+  
+  <div class="pokemon">
+  <img src="${pokemon.image}" alt="${pokemon.name} photo">
+  
+  <h3>Type: ${pokemon.type.join(", ")}</h3>
+  
+  <p>${pokemon.description}</p>
+  
+  ${pokemonStats(pokemon)}
+  </div>
+  </div>
   `;
 }
 
 
 //template for types
-//.join adds a space in between each word if there are various words in the table
+//.join adds a space
 function typesTemplate(type) {
   return `
-    <div class="type-content">
-    <h2>${type.type}</h2>
-    <div class="type">
-    <img src="${type.image}" alt="${type.type} photo">
-
-      <h3>Strengths: ${type.strengths.join(", ")}</h3>
-      <h3>Weaknesses: ${type.weaknesses.join(", ")}</h3>
-      </div>
-    </div>
+  <div class="type-content">
+  <h2>${type.type}</h2>
+  <div class="type">
+  <img src="${type.image}" alt="${type.type} photo">
+  
+  <h3>Strengths: ${type.strengths.join(", ")}</h3>
+  <h3>Weaknesses: ${type.weaknesses.join(", ")}</h3>
+  </div>
+  </div>
   `;
 }
 
 //rendering pokemon and types
 function render(pokemon) {
-    let html = pokemonsTemplate(pokemon);
-    pokemonContainer.innerHTML += html
+  let html = pokemonsTemplate(pokemon);
+  pokemonContainer.innerHTML += html
 }
 function renderType(type) {
-    let html = typesTemplate(type);
-    typeContainer.innerHTML += html
+  let html = typesTemplate(type);
+  typeContainer.innerHTML += html
 }
 
-//puts random pokemon and stats on screen
+//puts random pokemon and stats on screen before user searches.
+let randomNumPokemon = Math.floor(Math.random() * pokemon.length);
+console.log(randomNumPokemon);
+
+
 function init() {
     render(pokemon[randomNumPokemon]);
 }
