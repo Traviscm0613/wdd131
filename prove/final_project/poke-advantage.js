@@ -429,14 +429,33 @@ let randomNumPokemon = Math.floor(Math.random() * pokemon.length);
 console.log(randomNumPokemon);
 
 
+
+
+
+// work to make show the strengths and weakness of the pokemon
+//
+//
+//
+//
+function pokemonWeakness(pokemon, type) {
+  if (pokemon.type == type.type) {
+    return `
+    <h3>Strength - ${type.strengths}</h3>
+    <h3>Weaknesses - ${type.weaknesses}</h3>
+    `
+  }
+}
+
+
 //template for pokemon
-function pokemonsTemplate(pokemon) {
+function pokemonsTemplate(pokemon, type) {
   return `
     <div class="pokemon-content">
     <h2>${pokemon.name}</h2>
     <div class="pokemon">
     <img src="${pokemon.image}" alt="${pokemon.name} photo">
     
+      
       <h3>${pokemon.type}</h3>
 
         <p>${pokemon.description}</p>
