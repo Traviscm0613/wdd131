@@ -119,4 +119,13 @@ footer {
         height:auto;
     }
 
+    main{
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+    
+    main p {
+        margin-left: 15%;
+        margin-right: 15%;
+    }
 }
