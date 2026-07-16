@@ -1,4 +1,4 @@
-
+//AI helped me to fill these arrays with pokemon in the format I gave it.
 
 const pokemon = [
   { name: 'Bulbasaur', type: ['Grass', 'Poison'], description: "A small Pokémon that grows a plant bulb on its back, storing energy for evolution.", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" },
@@ -436,7 +436,7 @@ function pokemonStats(pokemon) {
   pokemon.type.forEach(pokemonType => {
     const typeInfo = type.find(types => types.type === pokemonType);
     
-    // this creates the 
+    // this creates the format to then insert into my pokemonsTemplate
     if (typeInfo) {
       html += `
       <h3>${pokemonType}</h3>
@@ -491,6 +491,7 @@ function render(pokemon) {
   let html = pokemonsTemplate(pokemon);
   pokemonContainer.innerHTML += html
 }
+//This would be helpful if I want there to as well be a random type but I didn't add it to my init function.
 function renderType(type) {
   let html = typesTemplate(type);
   typeContainer.innerHTML += html
